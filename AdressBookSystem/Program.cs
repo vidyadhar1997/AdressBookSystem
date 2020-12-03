@@ -39,13 +39,12 @@ namespace AdressBookSystem
                         Console.WriteLine("Enter first name = ");
                         string search = Console.ReadLine();
                         adressBookBuilder.editContact(search);
-                        adressBookBuilder.displayContact();
                         break;
                     case 3:
                         Console.WriteLine("Enter first name = ");
                         string delete = Console.ReadLine();
                         adressBookBuilder.deleteContact(delete);
-                        //adressBookBuilder.displayContact();
+                        adressBookBuilder.displayContact();
                         break;
                     case 4:
                         Environment.Exit(0);
