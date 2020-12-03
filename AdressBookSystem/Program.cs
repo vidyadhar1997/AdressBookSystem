@@ -9,7 +9,7 @@ namespace AdressBookSystem
             AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
             while (true)
             {
-                Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for exit ");
+                Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for exit ");
                 int choise = Convert.ToInt32(Console.ReadLine());
                 switch (choise)
                 {
@@ -37,11 +37,17 @@ namespace AdressBookSystem
                         break;
                     case 2:
                         Console.WriteLine("Enter first name = ");
-                        string seachFirstName = Console.ReadLine();
-                        adressBookBuilder.editContact(seachFirstName);
+                        string search = Console.ReadLine();
+                        adressBookBuilder.editContact(search);
                         adressBookBuilder.displayContact();
                         break;
                     case 3:
+                        Console.WriteLine("Enter first name = ");
+                        string delete = Console.ReadLine();
+                        adressBookBuilder.deleteContact(delete);
+                        //adressBookBuilder.displayContact();
+                        break;
+                    case 4:
                         Environment.Exit(0);
                         break;
                     default:

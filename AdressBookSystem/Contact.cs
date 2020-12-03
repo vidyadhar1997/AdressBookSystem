@@ -25,8 +25,8 @@ namespace AdressBookSystem
             this.zip = zip;
             this.phoneNumber = phoneNumber;
             this.email = email;
-
         }
+        
         public string toString()
         {
             return "first Name=" + fName + ",last name=" + lName + ",address="

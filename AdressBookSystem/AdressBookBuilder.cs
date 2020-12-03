@@ -46,6 +46,26 @@ namespace AdressBookSystem
                 Console.WriteLine("Contact not found");
             }
         }
+
+        public void deleteContact(string fName)
+        {
+            int flag = 1;
+            foreach (Contact contact in contactList)
+            {
+                if (fName.Equals(contact.fName))
+                {
+                    flag = 0;
+                    contactList.Remove(contact);
+                    Console.WriteLine("Sucessfully deleted");
+                    break;
+                }
+            }
+            if (flag == 1)
+            {
+                Console.WriteLine("Contact not found");
+            }
+        }
+
         public void displayContact()
         {
             foreach(Contact contact in contactList)
