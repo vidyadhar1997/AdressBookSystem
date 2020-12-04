@@ -32,7 +32,17 @@ namespace AdressBookSystem
                         String phoneNumber = Console.ReadLine();
                         Console.WriteLine("Enter email= ");
                         String email = Console.ReadLine();
+<<<<<<< HEAD
                         adressBookBuilder.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+=======
+
+                        Console.WriteLine("Enter how many adress book you want");
+                        int number = Convert.ToInt32(Console.ReadLine());
+                        for (int i = 0; i < number; i++)
+                        {
+                            adressBookBuilder.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                        }
+>>>>>>> UC6-RefactorToAddMultipleAdressBook
                         adressBookBuilder.displayContact();
                         break;
                     case 2:
