@@ -12,35 +12,34 @@ namespace AdressBookSystem
             this.contactList = new List<Contact>();
         }
         
-        public void addContact(String fName, String lName, String address, String city, String state, String zip, String phoneNumber, String email)
+        public void addContact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email)
         {
-            Contact contact = new Contact(fName,lName,address,city,state,zip,phoneNumber,email);
+            Contact contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
             contactList.Add(contact);
         }
         
-        public void editContact(string fName)
+        public void editContact(string firstName)
         {
-
             int flag = 1;
             foreach (Contact contact in contactList)
             {
-                if (fName.Equals(contact.fName))
+                if (firstName.Equals(contact.firstName))
                 {
                     flag = 0;
                     Console.WriteLine("Enter last name = ");
-                    string lName = Console.ReadLine();
+                    contact.lastName = Console.ReadLine();
                     Console.WriteLine("Enter address= ");
-                    String address = Console.ReadLine();
+                    contact.address = Console.ReadLine();
                     Console.WriteLine("Enter city= ");
-                    String city = Console.ReadLine();
+                    contact.city = Console.ReadLine();
                     Console.WriteLine("Enter state= ");
-                    String state = Console.ReadLine();
+                    contact.state = Console.ReadLine();
                     Console.WriteLine("Enter zip= ");
-                    String zip = Console.ReadLine();
+                    contact.zip = Console.ReadLine();
                     Console.WriteLine("Enter phoneNumber= ");
-                    String phoneNumber = Console.ReadLine();
+                    contact.phoneNumber = Console.ReadLine();
                     Console.WriteLine("Enter email= ");
-                    String email = Console.ReadLine();
+                    contact.email = Console.ReadLine();
                     break;
                 }
 
@@ -51,12 +50,12 @@ namespace AdressBookSystem
             }
         }
 
-        public void deleteContact(string fName)
+        public void deleteContact(string firstName)
         {
             int flag = 1;
             foreach (Contact contact in contactList)
             {
-                if (fName.Equals(contact.fName))
+                if (firstName.Equals(contact.firstName))
                 {
                     flag = 0;
                     contactList.Remove(contact);
@@ -74,8 +73,8 @@ namespace AdressBookSystem
         {
             foreach(Contact contact in contactList)
             {
-                Console.WriteLine("\nFirst name = " + contact.fName);
-                Console.WriteLine("Last name = " + contact.lName);
+                Console.WriteLine("\nFirst name = " + contact.firstName);
+                Console.WriteLine("Last name = " + contact.lastName);
                 Console.WriteLine("Address = " + contact.address);
                 Console.WriteLine("city = " + contact.city);
                 Console.WriteLine("state = " + contact.state);
