@@ -6,25 +6,25 @@ namespace AdressBookSystem
 {
     class AdressBookBuilder:IContacts
     {
-        public List<Contact> contactList;
+        Dictionary<string,Contact>dictionaryKeyValuePairs;
+        
         public AdressBookBuilder()
         {
-            this.contactList = new List<Contact>();
+            this.dictionaryKeyValuePairs = new Dictionary<string, Contact>();
         }
         
-        public void addContact(String fName, String lName, String address, String city, String state, String zip, String phoneNumber, String email)
+        public void addContact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email)
         {
-            Contact contact = new Contact(fName,lName,address,city,state,zip,phoneNumber,email);
-            contactList.Add(contact);
+            Contact contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
+            dictionaryKeyValuePairs.Add(firstName, contact);
         }
         
-        public void editContact(string fName)
+        public void editContact(string firstName)
         {
-
             int flag = 1;
-            foreach (Contact contact in contactList)
+            foreach (KeyValuePair<string, Contact> dictionary in dictionaryKeyValuePairs)
             {
-                if (fName.Equals(contact.fName))
+                if (firstName.Equals(dictionary.Key))
                 {
                     flag = 0;
                     Console.WriteLine("Enter last name = ");
@@ -43,7 +43,6 @@ namespace AdressBookSystem
                     String email = Console.ReadLine();
                     break;
                 }
-
             }
             if (flag == 1)
             {
@@ -51,15 +50,16 @@ namespace AdressBookSystem
             }
         }
 
-        public void deleteContact(string fName)
+        public void deleteContact(string firstName)
         {
             int flag = 1;
-            foreach (Contact contact in contactList)
+            foreach (KeyValuePair<string,Contact>dictionary in dictionaryKeyValuePairs)
             {
-                if (fName.Equals(contact.fName))
+                if (firstName.Equals(dictionary.Key))
                 {
                     flag = 0;
-                    contactList.Remove(contact);
+                    dictionaryKeyValuePairs.Remove(firstName);
+
                     Console.WriteLine("Sucessfully deleted");
                     break;
                 }
@@ -72,17 +72,16 @@ namespace AdressBookSystem
 
         public void displayContact()
         {
-            foreach(Contact contact in contactList)
+            foreach(KeyValuePair<string, Contact> dictionary in dictionaryKeyValuePairs)
             {
-                Console.WriteLine("\nFirst name = " + contact.fName);
-                Console.WriteLine("Last name = " + contact.lName);
-                Console.WriteLine("Address = " + contact.address);
-                Console.WriteLine("city = " + contact.city);
-                Console.WriteLine("state = " + contact.state);
-                Console.WriteLine("zip = " + contact.zip);
-                Console.WriteLine("phoneNumber = " + contact.phoneNumber);
-                Console.WriteLine("email = " + contact.email);
-
+                Console.WriteLine("\nFirst name = " + dictionary.Value.firstName);
+                Console.WriteLine("Last name = " + dictionary.Value.lastName);
+                Console.WriteLine("Address = " + dictionary.Value.address);
+                Console.WriteLine("city = " + dictionary.Value.city);
+                Console.WriteLine("state = " + dictionary.Value.state);
+                Console.WriteLine("zip = " + dictionary.Value.zip);
+                Console.WriteLine("phoneNumber = " + dictionary.Value.phoneNumber);
+                Console.WriteLine("email = " + dictionary.Value.email);
             }
         }
     }

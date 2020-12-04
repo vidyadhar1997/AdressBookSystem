@@ -17,9 +17,9 @@ namespace AdressBookSystem
                         Console.WriteLine("Welcome To  Book System!");
                         Program program = new Program();
                         Console.WriteLine("Enter first name = ");
-                        string fName = Console.ReadLine();
+                        string firstName = Console.ReadLine();
                         Console.WriteLine("Enter last name = ");
-                        string lName = Console.ReadLine();
+                        string lastName = Console.ReadLine();
                         Console.WriteLine("Enter address= ");
                         String address = Console.ReadLine();
                         Console.WriteLine("Enter city= ");
@@ -32,7 +32,13 @@ namespace AdressBookSystem
                         String phoneNumber = Console.ReadLine();
                         Console.WriteLine("Enter email= ");
                         String email = Console.ReadLine();
-                        adressBookBuilder.addContact(fName, lName, address, city, state, zip, phoneNumber, email);
+
+                        Console.WriteLine("Enter how many adress book you want");
+                        int number = Convert.ToInt32(Console.ReadLine());
+                        for (int i = 0; i < number; i++)
+                        {
+                            adressBookBuilder.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                        }
                         adressBookBuilder.displayContact();
                         break;
                     case 2:

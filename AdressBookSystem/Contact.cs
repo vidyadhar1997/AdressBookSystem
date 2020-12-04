@@ -6,8 +6,8 @@ namespace AdressBookSystem
 {
     class Contact
     {
-        public String fName;
-        public String lName;
+        public String firstName;
+        public String lastName;
         public String address;
         public String city;
         public String state;
@@ -15,10 +15,10 @@ namespace AdressBookSystem
         public String phoneNumber;
         public String email;
 
-        public Contact(String fName, String lName, String address, String city, String state, String zip, String phoneNumber, String email)
+        public Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email)
         {
-            this.fName = fName;
-            this.lName = lName;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.address = address;
             this.city = city;
             this.state = state;
@@ -26,10 +26,10 @@ namespace AdressBookSystem
             this.phoneNumber = phoneNumber;
             this.email = email;
         }
-        
+       
         public string toString()
         {
-            return "first Name=" + fName + ",last name=" + lName + ",address="
+            return "first Name=" + firstName + ",last name=" + lastName + ",address="
             + address + ",city=" + city + ",state=" + state + ",zip" +
             zip + ",phone number=" + phoneNumber + "email=" + email;
         }
