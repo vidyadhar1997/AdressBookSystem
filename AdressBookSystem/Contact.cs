@@ -16,7 +16,6 @@ namespace AdressBookSystem
         public String email;
 
         public Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email)
-<<<<<<< HEAD
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -27,25 +26,7 @@ namespace AdressBookSystem
             this.phoneNumber = phoneNumber;
             this.email = email;
         }
-        /*public Contact(String fName, String lName, String address, String city, String state, String zip, String phoneNumber, String email)
-=======
->>>>>>> UC6-RefactorToAddMultipleAdressBook
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.address = address;
-            this.city = city;
-            this.state = state;
-            this.zip = zip;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-<<<<<<< HEAD
-        }*/
-
-=======
-        }
-       
->>>>>>> UC6-RefactorToAddMultipleAdressBook
+        
         public string toString()
         {
             return "first Name=" + firstName + ",last name=" + lastName + ",address="
