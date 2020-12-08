@@ -14,7 +14,7 @@ namespace AdressBookSystem
             this.contactList = new List<Contact>();
         }
         
-        public void addContact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email)
+        public void addContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
             bool duplicate=equals(firstName);
             if (!duplicate)
@@ -24,7 +24,7 @@ namespace AdressBookSystem
             }
             else 
             {
-                Console.WriteLine("Cannot add duplicate contacts first name");
+                Console.WriteLine("Cannot add duplicate contacts when you give first name same");
             }
         }
         

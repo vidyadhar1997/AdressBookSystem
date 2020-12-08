@@ -104,23 +104,32 @@ namespace AdressBookSystem
         }
         public static void takeInputAndAddToContact(AdressBookBuilder adressBookBuilder)
         {
+
             Console.WriteLine("Enter first name = ");
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter last name = ");
             string lastName = Console.ReadLine(); 
             Console.WriteLine("Enter address= ");
-            String address = Console.ReadLine();
+            string address = Console.ReadLine();
             Console.WriteLine("Enter city= ");
-            String city = Console.ReadLine();
+            string city = Console.ReadLine();
             Console.WriteLine("Enter state= ");
-            String state = Console.ReadLine();
+            string state = Console.ReadLine();
             Console.WriteLine("Enter zip= ");
-            String zip = Console.ReadLine();
+            string zip = Console.ReadLine();
             Console.WriteLine("Enter phoneNumber= ");
-            String phoneNumber = Console.ReadLine();
+            string phoneNumber = Console.ReadLine();
             Console.WriteLine("Enter email= ");
-            String email = Console.ReadLine();
-            adressBookBuilder.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            string email = Console.ReadLine();
+            if((firstName != "")|| (lastName != "")|| (address != "")||(city!="")||(state!="")||(zip!="")||(email!="")||(phoneNumber!=""))
+            {
+                adressBookBuilder.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+
+            }
+            else
+            {
+                Console.WriteLine("Empty string not allowed \n for add contacts please give the input in string");
+            }
         }
     }
 }
