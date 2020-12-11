@@ -101,12 +101,12 @@ namespace AdressBookSystem
                             String area = Console.ReadLine();
                             if (area.Contains("1"))
                             {
-                                cityDisc =  FindByCityOrState( adressBookDictionary, cityDisc);
+                                cityDisc =  FindByCityOrState( adressBookDictionary);
                                 displayPersonDisc(cityDisc);
                             }
                             else
                             {
-                                StateDisc =  FindByCityOrState( adressBookDictionary, StateDisc);
+                                StateDisc =  FindByCityOrState( adressBookDictionary);
                                 displayPersonDisc(StateDisc);
                             }
                             break;
@@ -128,8 +128,9 @@ namespace AdressBookSystem
         /// findByCityOrState wher we have to ask the user city or state  and print the details in particular adress book
         /// </summary>
         /// <param name="adressBookDictionary"></param>
-        public static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AdressBookBuilder>  adressBookDictionary, Dictionary<string, List<string>> areaDisc)
-        { 
+        public static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AdressBookBuilder>  adressBookDictionary)
+        {
+            Dictionary<string, List<string>> areaDisc = new Dictionary<string, List<string>>();
             Console.WriteLine("Enter the city or state where you want to find that person = ");
             string findPlace = Console.ReadLine();
             foreach (var element in adressBookDictionary)
@@ -153,13 +154,16 @@ namespace AdressBookSystem
         }
         public static void displayPersonDisc(Dictionary<string, List<string>>  areaDisc)
         {
+            int count = 0;
             foreach (var index in areaDisc)
             {
                 foreach (var personName in index.Value)
                 {
+                    count++;
                     Console.WriteLine("personName:-" + personName+"display area:-"+index.Key);
                 }
-            }        
+            }
+            Console.WriteLine("count:-"+count);
         }
         /// <summary>
         /// takeInputAndAddToContact methode for taking input from person and condition for input should not be empty
