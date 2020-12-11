@@ -15,6 +15,8 @@ namespace AdressBookSystem
         {
             Console.WriteLine("Welcome To  Book System!");
             Dictionary<string, AdressBookBuilder> adressBookDictionary = new Dictionary<string, AdressBookBuilder>();
+            Dictionary < string,List<string>> cityDisc = new Dictionary<string, List<string>>();
+            Dictionary<string, List<string>> StateDisc = new Dictionary<string, List<string>>();
             while (true)
             {
                 try
@@ -95,7 +97,18 @@ namespace AdressBookSystem
                             adressBookDictionary[displayContactInAdressBook].displayContact();
                             break;
                         case 5:
-                            findByCityOrState(adressBookDictionary);
+                            Console.WriteLine("Enter 1 for city 2 for state ");
+                            String area = Console.ReadLine();
+                            if (area.Contains("1"))
+                            {
+                                cityDisc =  FindByCityOrState( adressBookDictionary, cityDisc);
+                                displayPersonDisc(cityDisc);
+                            }
+                            else
+                            {
+                                StateDisc =  FindByCityOrState( adressBookDictionary, StateDisc);
+                                displayPersonDisc(StateDisc);
+                            }
                             break;
                         case 6:
                             Environment.Exit(0);
@@ -111,26 +124,42 @@ namespace AdressBookSystem
                 }
             }
         }
-        public static void findByCityOrState(Dictionary<string, AdressBookBuilder>  adressBookDictionary)
-        {
+        /// <summary>
+        /// findByCityOrState wher we have to ask the user city or state  and print the details in particular adress book
+        /// </summary>
+        /// <param name="adressBookDictionary"></param>
+        public static Dictionary<string, List<string>> FindByCityOrState(Dictionary<string, AdressBookBuilder>  adressBookDictionary, Dictionary<string, List<string>> areaDisc)
+        { 
             Console.WriteLine("Enter the city or state where you want to find that person = ");
             string findPlace = Console.ReadLine();
             foreach (var element in adressBookDictionary)
             {
                 List<string> listOfPersonsInPlace = element.Value.findPersons(findPlace);
-                if (listOfPersonsInPlace.Count == 0)
+                foreach (var name in listOfPersonsInPlace) 
                 {
-                    Console.WriteLine("No person in that city/state of adress book  = " + element.Key);
-                }
-                else
-                {
-                    Console.WriteLine("The person in that city/state of adress book = " + element.Key + " = ");
-                    foreach (var names in listOfPersonsInPlace)
+                    if (!areaDisc.ContainsKey(findPlace))
                     {
-                        Console.WriteLine(names);
+                        List<string> personList = new List<string>();
+                        personList.Add(name);
+                        areaDisc.Add(findPlace, personList);
+                    }
+                    else
+                    { 
+                        areaDisc[findPlace].Add(name);
                     }
                 }
             }
+            return areaDisc;
+        }
+        public static void displayPersonDisc(Dictionary<string, List<string>>  areaDisc)
+        {
+            foreach (var index in areaDisc)
+            {
+                foreach (var personName in index.Value)
+                {
+                    Console.WriteLine("personName:-" + personName+"display area:-"+index.Key);
+                }
+            }        
         }
         /// <summary>
         /// takeInputAndAddToContact methode for taking input from person and condition for input should not be empty
@@ -138,7 +167,6 @@ namespace AdressBookSystem
         /// <param name="adressBookBuilder"></param>
         public static void takeInputAndAddToContact(AdressBookBuilder adressBookBuilder)
         {
-
             Console.WriteLine("Enter first name = ");
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter last name = ");
