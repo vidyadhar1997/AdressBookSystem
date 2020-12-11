@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AdressBookSystem
 {
+    /// <summary>
+    /// Interface with addContact,editContact,deleteContact,displayContact methods without body
+    /// </summary>
     interface IContacts
     {
         public void addContact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email);

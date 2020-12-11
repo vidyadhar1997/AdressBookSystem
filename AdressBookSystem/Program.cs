@@ -5,6 +5,12 @@ namespace AdressBookSystem
 {
     class Program
     {
+        /// <summary>
+        /// in main methode we added multiple adress book and display that adress book which we added,passes AdressBookBuilder class
+        /// for add,edit,delete,display contacts of person in both the adress book with the help of dictionary
+        /// as per user requirments
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome To  Book System!");
@@ -102,6 +108,10 @@ namespace AdressBookSystem
                 }
             }
         }
+        /// <summary>
+        /// takeInputAndAddToContact methode for taking input from person and condition for input should not be empty
+        /// </summary>
+        /// <param name="adressBookBuilder"></param>
         public static void takeInputAndAddToContact(AdressBookBuilder adressBookBuilder)
         {
 
@@ -124,7 +134,6 @@ namespace AdressBookSystem
             if((firstName != "")|| (lastName != "")|| (address != "")||(city!="")||(state!="")||(zip!="")||(email!="")||(phoneNumber!=""))
             {
                 adressBookBuilder.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-
             }
             else
             {
