@@ -47,7 +47,7 @@ namespace AdressBookSystem
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for Exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for write in Txt File,\n 11 for Read From Txt File, \n 12 for exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -131,6 +131,16 @@ namespace AdressBookSystem
                             adressBookDictionary[sortByZipInAdressBook].sortByZip();
                             break;
                         case 10:
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts = ");
+                            string writeInAddressBook = Console.ReadLine();
+                            adressBookDictionary[writeInAddressBook].writeInTxtFile();
+                            break;
+                        case 11:
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts = ");
+                            string ReadAddressBook = Console.ReadLine();
+                            adressBookDictionary[ReadAddressBook].readFromTxtFile();
+                            break;
+                        case 12:
                             Environment.Exit(0);
                             break;
                         default:

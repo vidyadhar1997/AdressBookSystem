@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AdressBookSystem
 {
-    class Contact
+    public class Contact
     {
         public String firstName;
         public String lastName;
@@ -43,7 +43,6 @@ namespace AdressBookSystem
         /// <returns></returns>
         public override string ToString()
         {
-            Console.WriteLine("Contacts After sorting by first name = ");
             return  "\n FirstName = " + firstName + "\n Last Name = " + lastName + "\n Address = " + address + "\n City = " + city + "\n State = " + state + "\n Zip = " + zip + "\n Phone Number = " + phoneNumber + "\n Email = " + email;
         }
     }

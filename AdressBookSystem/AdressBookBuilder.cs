@@ -211,5 +211,21 @@ namespace AdressBookSystem
                 Console.WriteLine("\n FirstName = " + contact.firstName + "\n Last Name = " + contact.lastName + "\n Address = " + contact.address + "\n City = " + contact.city + "\n State = " + contact.state + "\n Zip = " + contact.zip + "\n Phone Number = " + contact.phoneNumber + "\n Email = " + contact.email);
             }
         }
+
+        /// <summary>
+        /// Writes the in text file.
+        /// </summary>
+        public void writeInTxtFile()
+        {
+            FileReadWrite.writeFile(contactList);
+        }
+
+        /// <summary>
+        /// Reads from text file.
+        /// </summary>
+        public void readFromTxtFile()
+        {
+            FileReadWrite.readFile();
+        }
     }
 }
