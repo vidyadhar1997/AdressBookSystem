@@ -47,7 +47,7 @@ namespace AdressBookSystem
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for write in Txt File,\n 11 for Read From Txt File, \n 12 for exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for write in Txt File,\n 11 for Read From Txt File, \n 12 for write in CSV File, \n 13 for Read From CSV File, \n 14 for exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -131,16 +131,26 @@ namespace AdressBookSystem
                             adressBookDictionary[sortByZipInAdressBook].sortByZip();
                             break;
                         case 10:
-                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts = ");
-                            string writeInAddressBook = Console.ReadLine();
-                            adressBookDictionary[writeInAddressBook].writeInTxtFile();
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts In Txt File = ");
+                            string writeInTxtAddressBook = Console.ReadLine();
+                            adressBookDictionary[writeInTxtAddressBook].writeInTxtFile();
                             break;
                         case 11:
-                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts = ");
-                            string ReadAddressBook = Console.ReadLine();
-                            adressBookDictionary[ReadAddressBook].readFromTxtFile();
+                            Console.WriteLine("Enter Adress Book Name To Read Contacts From Txt File = ");
+                            string ReadFromTxtAddressBook = Console.ReadLine();
+                            adressBookDictionary[ReadFromTxtAddressBook].readFromTxtFile();
                             break;
                         case 12:
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts In CSV File = ");
+                            string writeInCSVAddressBook = Console.ReadLine();
+                            adressBookDictionary[writeInCSVAddressBook].writeInCSVFile();
+                            break;
+                        case 13:
+                            Console.WriteLine("Enter Adress Book Name To Read Contacts From CSV File = ");
+                            string ReadFromCSVAddressBook = Console.ReadLine();
+                            adressBookDictionary[ReadFromCSVAddressBook].readFromCSVFile();
+                            break;
+                        case 14:
                             Environment.Exit(0);
                             break;
                         default:

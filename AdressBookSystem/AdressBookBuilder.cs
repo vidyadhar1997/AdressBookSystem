@@ -217,7 +217,7 @@ namespace AdressBookSystem
         /// </summary>
         public void writeInTxtFile()
         {
-            FileReadWrite.writeFile(contactList);
+            FileReadWrite.writeInTxtFile(contactList);
         }
 
         /// <summary>
@@ -225,7 +225,22 @@ namespace AdressBookSystem
         /// </summary>
         public void readFromTxtFile()
         {
-            FileReadWrite.readFile();
+            FileReadWrite.readFromTxtFile();
+        }
+        /// <summary>
+        /// Writes the in text file.
+        /// </summary>
+        public void writeInCSVFile()
+        {
+            FileReadWrite.writeintoCsvFile(contactList);
+        }
+
+        /// <summary>
+        /// Reads from text file.
+        /// </summary>
+        public void readFromCSVFile()
+        {
+            FileReadWrite.readFromCSVFile();
         }
     }
 }
