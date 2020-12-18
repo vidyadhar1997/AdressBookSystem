@@ -8,6 +8,7 @@ namespace AdressBookSystem
     class AdressBookBuilder:IContacts
     {
         public List<Contact> contactList;
+
         /// <summary>
         /// Initializes a new instance of the list <see cref="AdressBookBuilder"/> class.
         /// </summary>
@@ -15,6 +16,7 @@ namespace AdressBookSystem
         {
             this.contactList = new List<Contact>();
         }
+
         /// <summary>
         /// Adds the contact but contact is not be duplicated
         /// </summary>
@@ -39,6 +41,7 @@ namespace AdressBookSystem
                 Console.WriteLine("Cannot add duplicate contacts when you give first name same");
             }
         }
+
         /// <summary>
         /// Equalses the specified first name for duplicate name.
         /// </summary>
@@ -51,6 +54,7 @@ namespace AdressBookSystem
             else
                 return false;
         }
+
         /// <summary>
         /// Edits the contact with the help of first name of person
         /// </summary>
@@ -85,6 +89,7 @@ namespace AdressBookSystem
                 Console.WriteLine("Contact not found");
             }
         }
+
         /// <summary>
         /// Deletes the contact of person with the help of first name
         /// </summary>
@@ -107,6 +112,7 @@ namespace AdressBookSystem
                 Console.WriteLine("Contact not found");
             }
         }
+
         /// <summary>
         /// Displays the contact of persons
         /// </summary>
@@ -124,6 +130,12 @@ namespace AdressBookSystem
                 Console.WriteLine("email = " + contact.email);
             }
         }
+
+        /// <summary>
+        /// Find  the persons by place ie state or city.
+        /// </summary>
+        /// <param name="place">The place.</param>
+        /// <returns>person information</returns>
         public List<string> findPersons(string place)
         {
             List<string> personFounded = new List<string>();
@@ -141,6 +153,24 @@ namespace AdressBookSystem
                 }
             }
             return personFounded;
+        }
+
+        /// <summary>
+        /// Sort methode for sort entites in adress book.
+        /// </summary>
+        public void sort()
+        {
+            List<string> sortList = new List<string>();
+            foreach(Contact contacts in contactList)
+            {
+                string sort=contacts.ToString();
+                sortList.Add(sort);
+            }
+            sortList.Sort();
+            foreach(string sort in sortList)
+            {
+                Console.WriteLine(sort);
+            }
         }
     }
 }

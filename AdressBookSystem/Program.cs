@@ -47,7 +47,7 @@ namespace AdressBookSystem
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort,\n 7 for Exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -111,6 +111,11 @@ namespace AdressBookSystem
                             }
                             break;
                         case 6:
+                            Console.WriteLine("Enter Adress Book Name To Sort Contacts = ");
+                            string sortContactInAddressBook=Console.ReadLine();
+                            adressBookDictionary[sortContactInAddressBook].sort();
+                            break;
+                        case 7:
                             Environment.Exit(0);
                             break;
                         default:
@@ -124,6 +129,7 @@ namespace AdressBookSystem
                 }
             }
         }
+
         /// <summary>
         /// findByCityOrState wher we have to ask the user city or state  and print the details in particular adress book
         /// </summary>
@@ -152,6 +158,11 @@ namespace AdressBookSystem
             }
             return areaDisc;
         }
+
+        /// <summary>
+        /// displayPersonDisc for displaying person with area and count the contact
+        /// </summary>
+        /// <param name="areaDisc"></param>
         public static void displayPersonDisc(Dictionary<string, List<string>>  areaDisc)
         {
             int count = 0;
@@ -160,11 +171,12 @@ namespace AdressBookSystem
                 foreach (var personName in index.Value)
                 {
                     count++;
-                    Console.WriteLine("personName:-" + personName+"display area:-"+index.Key);
+                    Console.WriteLine("personName:-" +  personName  +  "display area:-"+  index.Key);
                 }
             }
             Console.WriteLine("count:-"+count);
         }
+
         /// <summary>
         /// takeInputAndAddToContact methode for taking input from person and condition for input should not be empty
         /// </summary>
