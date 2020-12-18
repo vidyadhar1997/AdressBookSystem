@@ -47,7 +47,7 @@ namespace AdressBookSystem
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort,\n 7 for Exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for Exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -112,10 +112,25 @@ namespace AdressBookSystem
                             break;
                         case 6:
                             Console.WriteLine("Enter Adress Book Name To Sort Contacts = ");
-                            string sortContactInAddressBook=Console.ReadLine();
-                            adressBookDictionary[sortContactInAddressBook].sort();
+                            string sortByFirstNameInAddressBook=Console.ReadLine();
+                            adressBookDictionary[sortByFirstNameInAddressBook].sortByFirstName();
                             break;
                         case 7:
+                            Console.WriteLine("Enter Adress Book Name To Sort Contacts = ");
+                            string sortByCityInAdressBook = Console.ReadLine();
+                            adressBookDictionary[sortByCityInAdressBook].sortByCity();
+                            break;
+                        case 8:
+                            Console.WriteLine("Enter Adress Book Name To Sort Contacts = ");
+                            string sortByStateInAdressBook = Console.ReadLine();
+                            adressBookDictionary[sortByStateInAdressBook].sortByState();
+                            break;
+                        case 9:
+                            Console.WriteLine("Enter Adress Book Name To Sort Contacts = ");
+                            string sortByZipInAdressBook = Console.ReadLine();
+                            adressBookDictionary[sortByZipInAdressBook].sortByZip();
+                            break;
+                        case 10:
                             Environment.Exit(0);
                             break;
                         default:

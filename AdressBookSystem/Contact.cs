@@ -14,7 +14,6 @@ namespace AdressBookSystem
         public String zip;
         public String phoneNumber;
         public String email;
-
         /// <summary>
         /// Parameterized constructor initializes a new instance of the contact class <see cref="Contact"/> class.
         /// </summary>
@@ -44,7 +43,8 @@ namespace AdressBookSystem
         /// <returns></returns>
         public override string ToString()
         {
-            return firstName + "\n" + lastName + "\n" + address + "\n" + city + "\n" + state + "\n" + zip + "\n"+ phoneNumber + "\n" + email;
+            Console.WriteLine("Contacts After sorting by first name = ");
+            return  "\n FirstName = " + firstName + "\n Last Name = " + lastName + "\n Address = " + address + "\n City = " + city + "\n State = " + state + "\n Zip = " + zip + "\n Phone Number = " + phoneNumber + "\n Email = " + email;
         }
     }
 }
