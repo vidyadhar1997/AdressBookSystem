@@ -47,7 +47,7 @@ namespace AdressBookSystem
                     {
                         Console.WriteLine(k);
                     }
-                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for write in Txt File,\n 11 for Read From Txt File, \n 12 for write in CSV File, \n 13 for Read From CSV File, \n 14 for exit");
+                    Console.WriteLine("\n 1 for Add Contact \n 2 for Edit Existing Contact \n 3 for delete the person,\n 4 for display,\n 5 for Enter city or state ,\n 6 for Sort by first name,\n 7 for Sort by city,\n 8 for Sort by state, \n 9 for Sort by zip,\n 10 for write in Txt File,\n 11 for Read From Txt File, \n 12 for write in CSV File, \n 13 for Read From CSV File,\n 14 for write in JSON File, \n 15 for Read From JSON File, \n 16 for exit");
                     int choise = Convert.ToInt32(Console.ReadLine());
                     switch (choise)
                     {
@@ -151,6 +151,16 @@ namespace AdressBookSystem
                             adressBookDictionary[ReadFromCSVAddressBook].readFromCSVFile();
                             break;
                         case 14:
+                            Console.WriteLine("Enter Adress Book Name To Store/write Contacts In JSON File = ");
+                            string writeInJSONAddressBook = Console.ReadLine();
+                            adressBookDictionary[writeInJSONAddressBook].writeInJSONFile();
+                            break;
+                        case 15:
+                            Console.WriteLine("Enter Adress Book Name To Read Contacts From JSON File = ");
+                            string ReadFromJSONAddressBook = Console.ReadLine();
+                            adressBookDictionary[ReadFromJSONAddressBook].readFromJSONFile();
+                            break;
+                        case 16:
                             Environment.Exit(0);
                             break;
                         default:
