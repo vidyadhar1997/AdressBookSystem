@@ -96,7 +96,7 @@ namespace AdressBookSystem
                 string[] csv = data.Split(",");
                 foreach (string dataCsv in csv)
                 {
-                    Console.WriteLine("\n" + dataCsv);
+                    Console.Write("\n" + dataCsv);
                 }
             }
         }
@@ -133,14 +133,7 @@ namespace AdressBookSystem
                 List<Contact> contacts = JsonConvert.DeserializeObject<List<Contact>>(File.ReadAllText(jsonFilePath));
                 foreach (Contact contact in contacts)
                 {
-                    Console.Write("\n"+ contact.firstName);
-                    Console.Write("\n"+ contact.lastName);
-                    Console.Write("\n"+ contact.address);
-                    Console.Write("\n"+ contact.city);
-                    Console.Write("\n"+ contact.state);
-                    Console.Write("\n"+ contact.zip);
-                    Console.Write("\n"+ contact.phoneNumber);
-                    Console.Write("\n"+ contact.email);
+                    Console.Write(contact.ToString());
                 }
             }
             else

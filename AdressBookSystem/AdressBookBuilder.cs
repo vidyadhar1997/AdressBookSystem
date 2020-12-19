@@ -160,16 +160,11 @@ namespace AdressBookSystem
         /// </summary>
         public void sortByFirstName()
         {
-            List<string> sortList = new List<string>();
-            foreach(Contact contacts in contactList)
+            contactList.Sort(new Comparison<Contact>((a, b) => string.Compare(a.firstName, b.firstName)));
+            Console.WriteLine("Contacts after sorting By City = ");
+            foreach (Contact contact in contactList)
             {
-                string sort=contacts.ToString();
-                sortList.Add(sort);
-            }
-            sortList.Sort();
-            foreach(string sort in sortList)
-            {
-                Console.WriteLine(sort);
+                Console.WriteLine("\n FirstName = " + contact.firstName + "\n Last Name = " + contact.lastName + "\n Address = " + contact.address + "\n City = " + contact.city + "\n State = " + contact.state + "\n Zip = " + contact.zip + "\n Phone Number = " + contact.phoneNumber + "\n Email = " + contact.email);
             }
         }
 
