@@ -37,5 +37,17 @@ namespace AddressBookTest
             bool result=adressBookBuilder.UpdateExiContactToDataBase(contact, "suraj");
             Assert.AreEqual(expected, result);
         }
+        
+        /// <summary>
+        /// Givens the address book in particular range when retrieve then should return address book data base.
+        /// </summary>
+        [TestMethod]
+        public void GivenAddressBookInParticularRange_WhenRetrieve_ThenShouldReturnAddressBookDataBase()
+        {
+            int expected = 2;
+            AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
+            int countofContacts = adressBookBuilder.getAllEmployeeInParticularPeriod();
+            Assert.AreEqual(expected, countofContacts);
+        }
     }
 }

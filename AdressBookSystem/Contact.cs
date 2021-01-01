@@ -14,6 +14,7 @@ namespace AdressBookSystem
         public string zip { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }
+        public DateTime start_date { get; set; }
         public Contact()
         {
 

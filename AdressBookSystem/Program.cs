@@ -17,6 +17,8 @@ namespace AdressBookSystem
             Contact contact = new Contact();
             AdressBookBuilder adressBookBuilder1 = new AdressBookBuilder();
             adressBookBuilder1.checkConnection();
+            int contacts=adressBookBuilder1.getAllEmployeeInParticularPeriod();
+            Console.WriteLine(contacts);
             //int count=adressBookBuilder1.getAllEmployee();
           /*  contact.lastName = "hudge";
             contact.address = "karve negar";

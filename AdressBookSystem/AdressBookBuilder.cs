@@ -369,5 +369,55 @@ namespace AdressBookSystem
                 this.sqlConnection.Close();
             }
         }
+       
+        /// <summary>
+        /// Gets all employee in particular period.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
+        public int getAllEmployeeInParticularPeriod()
+        {
+            try
+            {
+                int count = 0;
+                Contact contact = new Contact();
+                using (this.sqlConnection)
+                {
+                    this.sqlConnection.Open();
+                    string query = @"select * from AddressBook where start_date between CAST('2018-01-01' as date) and GETDATE();";
+                    SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
+                    SqlDataReader sqlDataReader = cmd.ExecuteReader();
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            count++;
+                            contact.firstName = sqlDataReader.GetString(0);
+                            contact.lastName = sqlDataReader.GetString(1);
+                            contact.address = sqlDataReader.GetString(2);
+                            contact.city = sqlDataReader.GetString(3);
+                            contact.state = sqlDataReader.GetString(4);
+                            contact.zip = sqlDataReader.GetString(5);
+                            contact.phoneNumber = sqlDataReader.GetString(6);
+                            contact.email = sqlDataReader.GetString(7);
+                            contact.start_date = sqlDataReader.GetDateTime(8);
+                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", contact.firstName, contact.lastName, contact.address, contact.city, contact.state, contact.zip, contact.phoneNumber, contact.email,contact.start_date);
+                            Console.WriteLine("\n");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data Found");
+                    }
+                    sqlDataReader.Close();
+                    this.sqlConnection.Close();
+                    return count;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
