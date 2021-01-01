@@ -49,5 +49,17 @@ namespace AddressBookTest
             int countofContacts = adressBookBuilder.getAllEmployeeInParticularPeriod();
             Assert.AreEqual(expected, countofContacts);
         }
+        
+        /// <summary>
+        /// Givens the address book when city or state then should return counto f contacts in address book data base.
+        /// </summary>
+        [TestMethod]
+        public void GivenAddressBook_WhenCityOrState_ThenShouldReturnCountoFContactsInAddressBookDataBase()
+        {
+            int expected = 2;
+            AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
+            int countofContacts = adressBookBuilder.personBelongingCityOrState();
+            Assert.AreEqual(expected, countofContacts);
+        }
     }
 }
