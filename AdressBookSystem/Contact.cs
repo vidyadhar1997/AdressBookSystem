@@ -6,14 +6,19 @@ namespace AdressBookSystem
 {
     public class Contact
     {
-        public String firstName;
-        public String lastName;
-        public String address;
-        public String city;
-        public String state;
-        public String zip;
-        public String phoneNumber;
-        public String email;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zip { get; set; }
+        public string phoneNumber { get; set; }
+        public string email { get; set; }
+        public Contact()
+        {
+
+        } 
+
         /// <summary>
         /// Parameterized constructor initializes a new instance of the contact class <see cref="Contact"/> class.
         /// </summary>

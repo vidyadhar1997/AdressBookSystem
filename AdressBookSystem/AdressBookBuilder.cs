@@ -1,12 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
 namespace AdressBookSystem
 {
-    class AdressBookBuilder:IContacts
+    public class AdressBookBuilder:IContacts
     {
+        public static string connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = AddressBook; Integrated Security = True";
+        SqlConnection sqlConnection = new SqlConnection(connectionString);
+
+        /// <summary>
+        /// Checks the connection.
+        /// </summary>
+        public void checkConnection()
+        {
+            try
+            {
+                this.sqlConnection.Open();
+                Console.WriteLine("connection established");
+                this.sqlConnection.Close();
+            }
+            catch
+            {
+                Console.WriteLine("not established");
+            }
+        }
+
         public List<Contact> contactList;
 
         /// <summary>
@@ -253,6 +275,50 @@ namespace AdressBookSystem
         public void readFromJSONFile()
         {
             FileReadWrite.readFromJSONFile();
+        }
+
+        public int getAllEmployee()
+        {
+            try
+            {
+                int count = 0;
+                Contact contact = new Contact();
+                using (this.sqlConnection)
+                {
+                    this.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("spGetAllEmployee", this.sqlConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader sqlDataReader = cmd.ExecuteReader();
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            count++;
+                            contact.firstName = sqlDataReader.GetString(0);
+                            contact.lastName = sqlDataReader.GetString(1);
+                            contact.address = sqlDataReader.GetString(2);
+                            contact.city = sqlDataReader.GetString(3);
+                            contact.state = sqlDataReader.GetString(4);
+                            contact.zip = sqlDataReader.GetString(5);
+                            contact.phoneNumber = sqlDataReader.GetString(6);
+                            contact.email= sqlDataReader.GetString(7);
+                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}", contact.firstName, contact.lastName, contact.address,contact.city, contact.state, contact.zip, contact.phoneNumber, contact.email);
+                            Console.WriteLine("\n");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data Found");
+                    }
+                    sqlDataReader.Close();
+                    this.sqlConnection.Close();
+                    return count;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

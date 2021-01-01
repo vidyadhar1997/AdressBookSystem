@@ -13,7 +13,6 @@ namespace AdressBookSystem
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To  Book System!");
             Dictionary<string, AdressBookBuilder> adressBookDictionary = new Dictionary<string, AdressBookBuilder>();
             Dictionary < string,List<string>> cityDisc = new Dictionary<string, List<string>>();
             Dictionary<string, List<string>> StateDisc = new Dictionary<string, List<string>>();
