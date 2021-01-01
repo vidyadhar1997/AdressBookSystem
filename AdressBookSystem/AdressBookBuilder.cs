@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AdressBookSystem
 {
-    public class AdressBookBuilder:IContacts
+    public class AdressBookBuilder : IContacts
     {
         public static string connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = AddressBook; Integrated Security = True";
         SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -52,13 +52,13 @@ namespace AdressBookSystem
         /// <param name="email">The email of person</param>
         public void addContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
-            bool duplicate=equals(firstName);
+            bool duplicate = equals(firstName);
             if (!duplicate)
             {
                 Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
                 contactList.Add(contact);
             }
-            else 
+            else
             {
                 Console.WriteLine("Cannot add duplicate contacts when you give first name same");
             }
@@ -161,14 +161,14 @@ namespace AdressBookSystem
         public List<string> findPersons(string place)
         {
             List<string> personFounded = new List<string>();
-            foreach(Contact contacts in contactList.FindAll(e => (e.city.Equals(place))).ToList())
+            foreach (Contact contacts in contactList.FindAll(e => (e.city.Equals(place))).ToList())
             {
-                string name=contacts.firstName + " " + contacts.lastName;
+                string name = contacts.firstName + " " + contacts.lastName;
                 personFounded.Add(name);
             }
             if (personFounded.Count == 0)
             {
-                foreach(Contact contacts in contactList.FindAll(e => (e.state.Equals(place))).ToList())
+                foreach (Contact contacts in contactList.FindAll(e => (e.state.Equals(place))).ToList())
                 {
                     string name = contacts.firstName + " " + contacts.lastName;
                     personFounded.Add(name);
@@ -197,7 +197,7 @@ namespace AdressBookSystem
         {
             contactList.Sort(new Comparison<Contact>((a, b) => string.Compare(a.city, b.city)));
             Console.WriteLine("Contacts after sorting By City = ");
-            foreach(Contact contact in contactList)
+            foreach (Contact contact in contactList)
             {
                 Console.WriteLine("\n FirstName = " + contact.firstName + "\n Last Name = " + contact.lastName + "\n Address = " + contact.address + "\n City = " + contact.city + "\n State = " + contact.state + "\n Zip = " + contact.zip + "\n Phone Number = " + contact.phoneNumber + "\n Email = " + contact.email);
             }
@@ -277,6 +277,11 @@ namespace AdressBookSystem
             FileReadWrite.readFromJSONFile();
         }
 
+        /// <summary>
+        /// Gets all employee.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
         public int getAllEmployee()
         {
             try
@@ -301,8 +306,8 @@ namespace AdressBookSystem
                             contact.state = sqlDataReader.GetString(4);
                             contact.zip = sqlDataReader.GetString(5);
                             contact.phoneNumber = sqlDataReader.GetString(6);
-                            contact.email= sqlDataReader.GetString(7);
-                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}", contact.firstName, contact.lastName, contact.address,contact.city, contact.state, contact.zip, contact.phoneNumber, contact.email);
+                            contact.email = sqlDataReader.GetString(7);
+                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}", contact.firstName, contact.lastName, contact.address, contact.city, contact.state, contact.zip, contact.phoneNumber, contact.email);
                             Console.WriteLine("\n");
                         }
                     }
@@ -318,6 +323,50 @@ namespace AdressBookSystem
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+        
+        /// <summary>
+        /// Updates the exi contact to data base.
+        /// </summary>
+        /// <param name="contact">The contact.</param>
+        /// <param name="firstName">The first name.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
+        public bool UpdateExiContactToDataBase(Contact contact, string firstName)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    string query = @"update AddressBook set lastName=@lastName,address=@address,city=@city,
+                    state=@state,zip=@zip,phoneNumber=@phoneNumber,email=@email where firstName=@firstName";
+                    SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", contact.lastName);
+                    cmd.Parameters.AddWithValue("@address", contact.address);
+                    cmd.Parameters.AddWithValue("@city", contact.city);
+                    cmd.Parameters.AddWithValue("@state", contact.state);
+                    cmd.Parameters.AddWithValue("@zip", contact.zip);
+                    cmd.Parameters.AddWithValue("@phoneNumber", contact.phoneNumber);
+                    cmd.Parameters.AddWithValue("@email", contact.email);
+                    this.sqlConnection.Open();
+                    var result = cmd.ExecuteNonQuery();
+                    this.sqlConnection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
             }
         }
     }

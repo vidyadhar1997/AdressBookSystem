@@ -13,6 +13,22 @@ namespace AdressBookSystem
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome To  Book System!");
+            Contact contact = new Contact();
+            AdressBookBuilder adressBookBuilder1 = new AdressBookBuilder();
+            adressBookBuilder1.checkConnection();
+            //int count=adressBookBuilder1.getAllEmployee();
+          /*  contact.lastName = "hudge";
+            contact.address = "karve negar";
+            contact.city = "pune";
+            contact.state = "karnatak";
+            contact.zip = "411052";
+            contact.phoneNumber = "9607610044";
+            contact.email = "kajolp@123";
+            adressBookBuilder1.UpdateExiContactToDataBase(contact, "suraj");*/
+
+
+
             Dictionary<string, AdressBookBuilder> adressBookDictionary = new Dictionary<string, AdressBookBuilder>();
             Dictionary < string,List<string>> cityDisc = new Dictionary<string, List<string>>();
             Dictionary<string, List<string>> StateDisc = new Dictionary<string, List<string>>();
