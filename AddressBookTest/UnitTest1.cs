@@ -61,5 +61,28 @@ namespace AddressBookTest
             int countofContacts = adressBookBuilder.personBelongingCityOrState();
             Assert.AreEqual(expected, countofContacts);
         }
+        
+        /// <summary>
+        /// Givens the address books when insert contacts then should inserted in database.
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        public void GivenAddressBooks_WhenInsertContacts_ThenShouldInsertedInDb()
+        {
+            bool expected = true;
+            AdressBookBuilder adressBookBuilder = new AdressBookBuilder();
+            Contact contact = new Contact();
+            contact.firstName = "Kaji";
+            contact.lastName = "paw";
+            contact.address = "karve";
+            contact.city = "pune";
+            contact.state = "maha";
+            contact.zip = "413512";
+            contact.phoneNumber = "9607610044";
+            contact.email = "kajolp@123";
+            contact.start_date = new System.DateTime(2016, 01, 01);
+            bool result = adressBookBuilder.addNewContactInDb(contact);
+            Assert.AreEqual(expected, result);
+        }
     }
 }

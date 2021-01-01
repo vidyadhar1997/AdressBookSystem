@@ -472,5 +472,48 @@ namespace AdressBookSystem
                 this.sqlConnection.Close();
             }
         }
+        
+        /// <summary>
+        /// Adds the new contact in database.
+        /// </summary>
+        /// <param name="contact">The contact.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
+        public bool addNewContactInDb(Contact contact)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    SqlCommand cmd = new SqlCommand("SpAddAddressBookDetails", this.sqlConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@firstName", contact.firstName);
+                    cmd.Parameters.AddWithValue("@lastName", contact.lastName);
+                    cmd.Parameters.AddWithValue("@address", contact.address);
+                    cmd.Parameters.AddWithValue("@city", contact.city);
+                    cmd.Parameters.AddWithValue("@state", contact.state);
+                    cmd.Parameters.AddWithValue("@zip", contact.zip);
+                    cmd.Parameters.AddWithValue("@phoneNumber", contact.phoneNumber);
+                    cmd.Parameters.AddWithValue("@email", contact.email);
+                    cmd.Parameters.AddWithValue("@start_date", contact.start_date);
+                    this.sqlConnection.Open();
+                    var result = cmd.ExecuteNonQuery();
+                    this.sqlConnection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
     }
 }
