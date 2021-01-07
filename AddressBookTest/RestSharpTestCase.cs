@@ -111,6 +111,9 @@ namespace RestSharpTestCase
             Assert.AreEqual(5, dataResorce.Count);
         }
         
+        /// <summary>
+        /// Given the contact when updat then should return updated contact.
+        /// </summary>
         [TestMethod]
         public void GivenContact_WhenUpdat_ThenShouldReturnUpdatedContact()
         {
@@ -138,6 +141,18 @@ namespace RestSharpTestCase
             Assert.AreEqual("7839330", dataResorce.phoneNumber);
             Assert.AreEqual("akash@123", dataResorce.email);
             Assert.AreEqual(new DateTime(2021, 01, 05), dataResorce.start_date);
+            Console.WriteLine(response.Content);
+        }
+        
+        /// <summary>
+        /// Givens the employee identifier when on delete then should return success status.
+        /// </summary>
+        [TestMethod]
+        public void GivenEmployeeId_WhenOnDelete_ThenShouldReturnSuccessStatus()
+        {
+            RestRequest request = new RestRequest("/Contact/4", Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             Console.WriteLine(response.Content);
         }
     }
