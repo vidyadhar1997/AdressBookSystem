@@ -110,5 +110,35 @@ namespace RestSharpTestCase
             List<Contacts> dataResorce = JsonConvert.DeserializeObject<List<Contacts>>(response.Content);
             Assert.AreEqual(5, dataResorce.Count);
         }
+        
+        [TestMethod]
+        public void GivenContact_WhenUpdat_ThenShouldReturnUpdatedContact()
+        {
+            RestRequest request = new RestRequest("/Contact/2", Method.PUT);
+            JObject jObjectBody = new JObject();
+            jObjectBody.Add("firstName", "akash");
+            jObjectBody.Add("lastName","sangale");
+            jObjectBody.Add("address", "tawarja");
+            jObjectBody.Add("city", "latur");
+            jObjectBody.Add("state","karnatak");
+            jObjectBody.Add("zip", "56783");
+            jObjectBody.Add("phoneNumber", "7839330");
+            jObjectBody.Add("email", "akash@123");
+            jObjectBody.Add("start_date", new DateTime(2021,01,05));
+            request.AddParameter("application/json", jObjectBody, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+            Contacts dataResorce = JsonConvert.DeserializeObject<Contacts>(response.Content);
+            Assert.AreEqual("akash", dataResorce.firstName);
+            Assert.AreEqual("sangale", dataResorce.lastName);
+            Assert.AreEqual("tawarja", dataResorce.address);
+            Assert.AreEqual("latur", dataResorce.city);
+            Assert.AreEqual("karnatak", dataResorce.state);
+            Assert.AreEqual("56783", dataResorce.zip);
+            Assert.AreEqual("7839330", dataResorce.phoneNumber);
+            Assert.AreEqual("akash@123", dataResorce.email);
+            Assert.AreEqual(new DateTime(2021, 01, 05), dataResorce.start_date);
+            Console.WriteLine(response.Content);
+        }
     }
 }
