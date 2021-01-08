@@ -91,24 +91,17 @@ namespace RestSharpTestCase
                 jObjectBody.Add("email", employeeData.email);
                 jObjectBody.Add("start_date", employeeData.start_date);
                 request.AddParameter("application/json", jObjectBody, ParameterType.RequestBody);
-                IRestResponse response = client.Execute(request);
-                Assert.AreEqual(response.StatusCode, HttpStatusCode.Created);
-                Contacts dataResorce = JsonConvert.DeserializeObject<Contacts>(response.Content);
-                Assert.AreEqual(employeeData.firstName, dataResorce.firstName);
-                Assert.AreEqual(employeeData.lastName, dataResorce.lastName);
-                Assert.AreEqual(employeeData.address, dataResorce.address);
-                Assert.AreEqual(employeeData.city, dataResorce.city);
-                Assert.AreEqual(employeeData.state, dataResorce.state);
-                Assert.AreEqual(employeeData.zip, dataResorce.zip);
-                Assert.AreEqual(employeeData.phoneNumber, dataResorce.phoneNumber);
-                Assert.AreEqual(employeeData.email, dataResorce.email);
-                Assert.AreEqual(employeeData.start_date, dataResorce.start_date);
-                Console.WriteLine(response.Content);
+                client.Execute(request);
             });
             IRestResponse response = getContactList();
             Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             List<Contacts> dataResorce = JsonConvert.DeserializeObject<List<Contacts>>(response.Content);
-            Assert.AreEqual(5, dataResorce.Count);
+            Assert.AreEqual(8, dataResorce.Count);
+            foreach (Contacts contact in dataResorce)
+            {
+                Console.WriteLine("firstName,: " + contact.firstName + ",lastName:" + contact.lastName + ",address:" + contact.address + ",city:" + contact.city +
+                ",state:" + contact.state + ",zip:" + contact.zip + ",phoneNumber:" + contact.phoneNumber + ",email:" + contact.email + ",start_date:" + contact.start_date);
+            }
         }
         
         /// <summary>
@@ -148,9 +141,9 @@ namespace RestSharpTestCase
         /// Givens the employee identifier when on delete then should return success status.
         /// </summary>
         [TestMethod]
-        public void GivenEmployeeId_WhenOnDelete_ThenShouldReturnSuccessStatus()
+        public void GivenContactId_WhenOnDelete_ThenShouldReturnSuccessStatus()
         {
-            RestRequest request = new RestRequest("/Contact/4", Method.DELETE);
+            RestRequest request = new RestRequest("/Contact/1", Method.DELETE);
             IRestResponse response = client.Execute(request);
             Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             Console.WriteLine(response.Content);
